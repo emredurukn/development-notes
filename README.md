@@ -2,7 +2,7 @@ Development Notes
 ====================
 Notes I got while developing software
 
-## Postgresql
+## PostgreSQL
 
 ```bash
 # psql is the command line utility for postgresql
@@ -24,6 +24,7 @@ $ psql postgres -U user_name            # start psql with user
 $ CREATE DATABASE database_name;        # create database
 $ \c database-name;                     # connect database
 $ \dl                                   # list tables
+$ DROP DATABASE database_name;          # delete database
 
 $ CREATE SCHEMA schema_name;            # create schema
 $ CREATE TABLE schema_name.table_name (id integer, password CHAR(10));  # create table
@@ -41,5 +42,17 @@ $ DROP TABLE schema_name.table_name;                   # delete table
 ## ImageMagick
 
 ```bash
-$ convert 1.jpg 2.jpg +append 3.jpg     # merge two images
+$ convert image1.jpg image2.jpg +append output_image.jpg     # merge two images
+$ convert image1.jpg -resize 150% output_image.jpg           # resize image
+$ convert image1.jpg -crop 2x1@ %d.jpg                       # split the image into two. Output -> 0.jpg, 1.jpg
+$ convert image1.jpg -crop 3x1@ -scene 3 %d.jpg              # split the image into three with offset. Output -> 3.jpg, 4.jpg, 5.jpg
+$ convert *.jpg output.pdf                                   # create pdf from images
+$ convert input.pdf %d.jpg                                   # extract images from pdf
+```
+
+
+## Git
+
+```bash
+$ git commit --amend -m "an updated commit message"          # change last commit message before push to remote server
 ```
