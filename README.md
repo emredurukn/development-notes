@@ -56,3 +56,22 @@ $ convert input.pdf %d.jpg                                   # extract images fr
 ```bash
 $ git commit --amend -m "an updated commit message"          # change last commit message before push to remote server
 ```
+
+## Rbenv
+
+```bash
+$ rbenv install 2.5.1     # install ruby-build
+$ rbenv global 2.5.1      # set ruby-build
+$ rbenv versions          # list installed ruby-build
+$ rbenv uninstall 2.5.0   # uninstall ruby-build
+$ rbenv rehash            # enable changes after gem installation
+$ rbenv install -l        # list all versions ruby-build
+```
+
+### rbenv zsh integration
+```bash
+$ echo 'export PATH=$HOME/.rbenv/bin:/usr/local/bin:$HOME/.bin:$PATH' >> ~/.zshenv
+$ echo 'eval "$(rbenv init - zsh)"' >> ~/.zshenv
+$ echo 'source $HOME/.zshenv' >> ~/.zshrc
+$ exec $SHELL
+```
