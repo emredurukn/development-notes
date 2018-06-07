@@ -75,3 +75,17 @@ $ echo 'eval "$(rbenv init - zsh)"' >> ~/.zshenv
 $ echo 'source $HOME/.zshenv' >> ~/.zshrc
 $ exec $SHELL
 ```
+
+### pyenv zsh integration
+```bash
+$ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+$ exec $SHELL
+```
+
+## GnuPG
+
+# encrypt file  (file_name.txt -> file_name.txt.gpg)
+gpg -c file_name.txt
+ 
+# decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
+gpg -o file_name.txt -d file_name.txt.gpg
