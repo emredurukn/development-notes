@@ -84,8 +84,10 @@ $ exec $SHELL
 
 ## GnuPG
 
-# encrypt file  (file_name.txt -> file_name.txt.gpg)
-gpg -c file_name.txt
+```bash
+$ gpg -c file_name.txt                        # encrypt file  (file_name.txt -> file_name.txt.gpg)
+```
  
-# decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
-gpg -o file_name.txt -d file_name.txt.gpg
+```bash
+$ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
+```
