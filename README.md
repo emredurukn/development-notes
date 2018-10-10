@@ -1,6 +1,30 @@
-Development Notes
-====================
+# Development Notes
+
 Notes I got while developing software
+
+## Conda
+
+```bash
+# conda commands ([environment_name] parameter -> ai_test)
+$ sudo conda create -n ai_test python=3.6       # create new environment which uses python 3.6
+$ sudo conda install -n ai_test tensorflow      # install package
+$ sudo conda update -n ai_test tensorflow       # update package
+$ source activate ai_test         # activate env
+$ source deactivate               # deactivate current env
+$ conda info --envs               # list envs
+$ conda list -n myenv             # list packages
+$ sudo conda remove -n ai_test tensorflow     # remove package
+$ sudo conda remove -n ai_test --all          # remove environment
+
+$ conda list --export > package-list.txt              # save packages for future use
+$ conda create -n ai_test --file package-list.txt     # reinstall packages from an export file
+
+# conda zsh integration
+$ echo 'export PATH="/Users/emredurukn/miniconda3/bin:$PATH"' >> ~/.zshenv
+$ exec $SHELL
+
+$ which python    # see which Python installation is currently set as the default
+```
 
 ## PostgreSQL
 
@@ -38,7 +62,6 @@ $ ALTER SEQUENCE table_name_id_seq RESTART WITH 1;     # reset ids on the table
 $ DROP TABLE schema_name.table_name;                   # delete table
 ```
 
-
 ## ImageMagick
 
 ```bash
@@ -49,7 +72,6 @@ $ convert image1.jpg -crop 3x1@ -scene 3 %d.jpg              # split the image i
 $ convert *.jpg output.pdf                                   # create pdf from images
 $ convert input.pdf %d.jpg                                   # extract images from pdf
 ```
-
 
 ## Git
 
@@ -69,6 +91,7 @@ $ rbenv install -l        # list all versions ruby-build
 ```
 
 ### rbenv zsh integration
+
 ```bash
 $ echo 'export PATH=$HOME/.rbenv/bin:/usr/local/bin:$HOME/.bin:$PATH' >> ~/.zshenv
 $ echo 'eval "$(rbenv init - zsh)"' >> ~/.zshenv
@@ -77,6 +100,7 @@ $ exec $SHELL
 ```
 
 ### pyenv zsh integration
+
 ```bash
 $ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 $ exec $SHELL
@@ -86,8 +110,5 @@ $ exec $SHELL
 
 ```bash
 $ gpg -c file_name.txt                        # encrypt file  (file_name.txt -> file_name.txt.gpg)
-```
- 
-```bash
 $ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
 ```
