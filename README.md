@@ -4,74 +4,64 @@ Notes I got while developing software
 
 ## Conda
 
+| Effect                                       | Command                                       |
+| -------------------------------------------- | --------------------------------------------- |
+| create new environment which uses python 3.6 | `sudo conda create -n myenv python=3.6`       |
+| install package                              | `sudo conda install -n myenv tensorflow`      |
+| update package                               | `sudo conda update -n myenv tensorflow`       |
+| activate env                                 | `source activate myenv`                       |
+| deactivate current env                       | `source deactivate`                           |
+| list envs                                    | `conda info --envs`                           |
+| list packages                                | `conda list -n myenv`                         |
+| remove package                               | `sudo conda remove -n myenv tensorflow`       |
+| remove environment                           | `sudo conda remove -n myenv --all`            |
+| save packages for future use                 | conda list --export > package-list.txt        |
+| reinstall packages from an export file       | conda create -n myenv --file package-list.txt |
+
 ```bash
-# conda commands ([environment_name] parameter -> ai_test)
-$ sudo conda create -n ai_test python=3.6       # create new environment which uses python 3.6
-$ sudo conda install -n ai_test tensorflow      # install package
-$ sudo conda update -n ai_test tensorflow       # update package
-$ source activate ai_test         # activate env
-$ source deactivate               # deactivate current env
-$ conda info --envs               # list envs
-$ conda list -n myenv             # list packages
-$ sudo conda remove -n ai_test tensorflow     # remove package
-$ sudo conda remove -n ai_test --all          # remove environment
-
-$ conda list --export > package-list.txt              # save packages for future use
-$ conda create -n ai_test --file package-list.txt     # reinstall packages from an export file
-
 # conda zsh integration
 $ echo 'export PATH="/Users/emredurukn/miniconda3/bin:$PATH"' >> ~/.zshenv
 $ exec $SHELL
 
-$ which python    # see which Python installation is currently set as the default
+$ which python # see which Python installation is currently set as the default
 ```
 
 ## PostgreSQL
 
-```bash
-# psql is the command line utility for postgresql
-
-$ psql postgres         # start psql with default database
-$ psql database_name    # start psql with other database
-
-$ \du    # list users
-$ \l     # list databases
-$ \q     # close psql
-
-$ CREATE ROLE user_name WITH LOGIN PASSWORD 'password';  # create user
-$ ALTER ROLE user_name CREATEDB;        # user authorized to create database
-$ DROP USER user_name;                  # delete user
-$ ALTER USER user_name WITH SUPERUSER;  # makes the user super user
-
-$ psql postgres -U user_name            # start psql with user
-
-$ CREATE DATABASE database_name;        # create database
-$ \c database-name;                     # connect database
-$ \dl                                   # list tables
-$ DROP DATABASE database_name;          # delete database
-
-$ CREATE SCHEMA schema_name;            # create schema
-$ CREATE TABLE schema_name.table_name (id integer, password CHAR(10));  # create table
-$ INSERT INTO schema_name.table_name values(1, '123456');      # adding data to the table
-$ ALTER TABLE schema_name.table_name DROP COLUMN column_name;  # delete column from the table
-
-$ TRUNCATE TABLE table_name;            # reset table
-# You can't use truncate command if your table has dependents (another tables that have FK of your table)
-
-$ ALTER SEQUENCE table_name_id_seq RESTART WITH 1;     # reset ids on the table
-$ DROP TABLE schema_name.table_name;                   # delete table
-```
+| Effect                             | Command                                                                |
+| ---------------------------------- | ---------------------------------------------------------------------- |
+| start psql with default database   | `psql postgres`                                                        |
+| start psql with other database     | `psql database_name`                                                   |
+| list users                         | `\du`                                                                  |
+| list databases                     | `\l`                                                                   |
+| close psql                         | `\q`                                                                   |
+| create user                        | `CREATE ROLE user_name WITH LOGIN PASSWORD 'password';`                |
+| user authorized to create database | `ALTER ROLE user_name CREATEDB;`                                       |
+| delete user                        | `DROP USER user_name;`                                                 |
+| makes the user super user          | `ALTER USER user_name WITH SUPERUSER;`                                 |
+| start psql with user               | `psql postgres -U user_name`                                           |
+| create database                    | `CREATE DATABASE database_name;`                                       |
+| connect database                   | `\c database-name;`                                                    |
+| list tables                        | `\dl`                                                                  |
+| delete database                    | `DROP DATABASE database_name;`                                         |
+| create schema                      | `CREATE SCHEMA schema_name;`                                           |
+| create table                       | `CREATE TABLE schema_name.table_name (id integer, password CHAR(10));` |
+| adding data to the table           | `INSERT INTO schema_name.table_name values(1, '123456');`              |
+| delete column from the table       | `ALTER TABLE schema_name.table_name DROP COLUMN column_name;`          |
+| reset table                        | `TRUNCATE TABLE table_name;`                                           |
+| reset ids on the table             | `ALTER SEQUENCE table_name_id_seq RESTART WITH 1;`                     |
+| delete table                       | `DROP TABLE schema_name.table_name;`                                   |
 
 ## ImageMagick
 
-```bash
-$ convert image1.jpg image2.jpg +append output_image.jpg     # merge two images
-$ convert image1.jpg -resize 150% output_image.jpg           # resize image
-$ convert image1.jpg -crop 2x1@ %d.jpg                       # split the image into two. Output -> 0.jpg, 1.jpg
-$ convert image1.jpg -crop 3x1@ -scene 3 %d.jpg              # split the image into three with offset. Output -> 3.jpg, 4.jpg, 5.jpg
-$ convert *.jpg output.pdf                                   # create pdf from images
-$ convert input.pdf %d.jpg                                   # extract images from pdf
-```
+| Effect                                                                | Command                                                  |
+| --------------------------------------------------------------------- | -------------------------------------------------------- |
+| merge two images                                                      | `convert image1.jpg image2.jpg +append output_image.jpg` |
+| resize image                                                          | `convert image1.jpg -resize 150% output_image.jpg`       |
+| split the image into two. Output -> 0.jpg, 1.jpg                      | `convert image1.jpg -crop 2x1@ %d.jpg`                   |
+| split the image into three with offset. Output -> 3.jpg, 4.jpg, 5.jpg | `convert image1.jpg -crop 3x1@ -scene 3 %d.jpg`          |
+| create pdf from images                                                | `convert \*.jpg output.pdf`                              |
+| extract images from pdf                                               | `convert input.pdf %d.jpg`                               |
 
 ## Git
 
@@ -96,13 +86,6 @@ $ rbenv install -l        # list all versions ruby-build
 $ echo 'export PATH=$HOME/.rbenv/bin:/usr/local/bin:$HOME/.bin:$PATH' >> ~/.zshenv
 $ echo 'eval "$(rbenv init - zsh)"' >> ~/.zshenv
 $ echo 'source $HOME/.zshenv' >> ~/.zshrc
-$ exec $SHELL
-```
-
-### pyenv zsh integration
-
-```bash
-$ echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 $ exec $SHELL
 ```
 
