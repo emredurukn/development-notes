@@ -19,7 +19,24 @@ Notes I got while developing software
 | reinstall packages from an export file       | conda create -n myenv --file package-list.txt |
 
 ```bash
-# conda zsh integration
+# anaconda zsh integration
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+# copy the above code block and paste to ~/.zshrc
+$ source $SHELL
+
+# miniconda zsh integration
 $ echo 'export PATH="/Users/emredurukn/miniconda3/bin:$PATH"' >> ~/.zshenv
 $ exec $SHELL
 
