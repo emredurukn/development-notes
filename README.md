@@ -9,6 +9,7 @@ Notes I got while developing software
 | create new environment which uses python 3.6 | `sudo conda create -n myenv python=3.6`       |
 | install package                              | `sudo conda install -n myenv tensorflow`      |
 | update package                               | `sudo conda update -n myenv tensorflow`       |
+| update all packages                          | `sudo conda update --all`                     |
 | activate env                                 | `source activate myenv`                       |
 | deactivate current env                       | `source deactivate`                           |
 | list envs                                    | `conda info --envs`                           |
@@ -34,11 +35,7 @@ fi
 unset __conda_setup
 
 # copy the above code block and paste to ~/.zshrc
-$ source $SHELL
-
-# miniconda zsh integration
-$ echo 'export PATH="/Users/emredurukn/miniconda3/bin:$PATH"' >> ~/.zshenv
-$ exec $SHELL
+$ source $SHELL # exec current shell
 
 $ which python # see which Python installation is currently set as the default
 ```
