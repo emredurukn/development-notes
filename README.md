@@ -94,13 +94,34 @@ $ rbenv rehash            # enable changes after gem installation
 $ rbenv install -l        # list all versions ruby-build
 ```
 
-### rbenv zsh integration
+## Rbenv, pyenv and nvm zsh integration with .zshrc
 
 ```bash
-$ echo 'export PATH=$HOME/.rbenv/bin:/usr/local/bin:$HOME/.bin:$PATH' >> ~/.zshenv
-$ echo 'eval "$(rbenv init - zsh)"' >> ~/.zshenv
-$ echo 'source $HOME/.zshenv' >> ~/.zshrc
-$ exec $SHELL
+# nvm
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+```
+
+## Pipenv
+
+```bash
+$ pipenv shell                          # activate virtualenv
+$ pipenv install camelcase              # install python module
+$ pipenv install nose --dev             # install python module for development
+$ pipenv uninstall camelcase            # uninstall python module
+$ pipenv install -r ./requirements.txt  # install from requirements.txt
+$ pipenv check                          # check security vulnerabilities
+$ pipenv graph                          # list dependency graph
+$ exit                                  # exit from virtualenv
 ```
 
 ## GnuPG
@@ -110,7 +131,7 @@ $ gpg -c file_name.txt                        # encrypt file  (file_name.txt -> 
 $ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
 ```
 
-## Install failed, "zlib not available" error on macOS Mojave
+## Solution of 'Install failed, "zlib not available" error' on macOS Mojave
 ```bash
 xcode-select --install
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
