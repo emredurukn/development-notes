@@ -1,6 +1,6 @@
 # Development Notes
 
-Notes I got while developing software
+Development notes for for daily uses
 
 ## Conda
 
@@ -18,27 +18,6 @@ Notes I got while developing software
 | remove environment                           | `sudo conda remove -n myenv --all`            |
 | save packages for future use                 | conda list --export > package-list.txt        |
 | reinstall packages from an export file       | conda create -n myenv --file package-list.txt |
-
-```bash
-# anaconda zsh integration
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-# copy the above code block and paste to ~/.zshrc
-$ source $SHELL # exec current shell
-
-$ which python # see which Python installation is currently set as the default
-```
 
 ## PostgreSQL
 
@@ -80,7 +59,8 @@ $ which python # see which Python installation is currently set as the default
 ## Git
 
 ```bash
-$ git commit --amend -m "an updated commit message"          # change last commit message before push to remote server
+$ git commit --amend -m "an updated commit message"     # change last commit message
+$ git reset --soft HEAD~1                               # undo last commit
 ```
 
 ## Rbenv
@@ -94,7 +74,7 @@ $ rbenv rehash            # enable changes after gem installation
 $ rbenv install -l        # list all versions ruby-build
 ```
 
-## Rbenv, pyenv and nvm zsh integration with .zshrc
+## Rbenv, pyenv, nvm, mongodb, anaconda zsh integration with .zshrc
 
 ```bash
 # nvm
@@ -109,6 +89,24 @@ eval "$(rbenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# mongodb
+export MONGO_PATH=/usr/local/mongodb
+export PATH=$PATH:$MONGO_PATH/bin
+
+# anaconda
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 ```
 
 ## Pipenv
