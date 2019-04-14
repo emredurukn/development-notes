@@ -10,8 +10,8 @@ Development notes for for daily uses
 | install package                              | `sudo conda install -n myenv tensorflow`      |
 | update package                               | `sudo conda update -n myenv tensorflow`       |
 | update all packages                          | `sudo conda update --all`                     |
-| activate env                                 | `source activate myenv`                       |
-| deactivate current env                       | `source deactivate`                           |
+| activate env                                 | `conda activate myenv`                       |
+| deactivate current env                       | `conda deactivate`                           |
 | list envs                                    | `conda info --envs`                           |
 | list packages                                | `conda list -n myenv`                         |
 | remove package                               | `sudo conda remove -n myenv tensorflow`       |
@@ -111,16 +111,16 @@ unset __conda_setup
 
 ## Pipenv
 
-```bash
-$ pipenv shell                          # activate virtualenv
-$ pipenv install camelcase              # install python module
-$ pipenv install nose --dev             # install python module for development
-$ pipenv uninstall camelcase            # uninstall python module
-$ pipenv install -r ./requirements.txt  # install from requirements.txt
-$ pipenv check                          # check security vulnerabilities
-$ pipenv graph                          # list dependency graph
-$ exit                                  # exit from virtualenv
-```
+| Effect                                                                | Command                                                  |
+| --------------------------------------------------------------------- | -------------------------------------------------------- |
+| activate virtualenv                                                   | `pipenv shell`                                           |
+| install python module                                                 | `pipenv install camelcase`                               |
+| install python module with skip lock                                  | `pipenv install camelcase --skip-lock`                   |
+| install python module for development                                 | `pipenv install nose --dev`                              |
+| uninstall python module                                               | `pipenv uninstall camelcase`                             |
+| install from requirements.txt                                         | `pipenv install -r ./requirements.txt`                   |
+| check security vulnerabilities                                        | `pipenv check`                                           |
+| list dependency graph                                                 | `pipenv graph`                                           |
 
 ## GnuPG
 
