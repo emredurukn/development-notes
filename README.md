@@ -4,20 +4,21 @@ Development notes for for daily uses
 
 ## Conda
 
-| Effect                                       | Command                                       |
-| -------------------------------------------- | --------------------------------------------- |
-| create new environment which uses python 3.6 | `sudo conda create -n myenv python=3.6`       |
-| install package                              | `sudo conda install -n myenv tensorflow`      |
-| update package                               | `sudo conda update -n myenv tensorflow`       |
-| update all packages                          | `sudo conda update --all`                     |
-| activate env                                 | `conda activate myenv`                       |
-| deactivate current env                       | `conda deactivate`                           |
-| list envs                                    | `conda info --envs`                           |
-| list packages                                | `conda list -n myenv`                         |
-| remove package                               | `sudo conda remove -n myenv tensorflow`       |
-| remove environment                           | `sudo conda remove -n myenv --all`            |
-| save packages for future use                 | conda list --export > package-list.txt        |
-| reinstall packages from an export file       | conda create -n myenv --file package-list.txt |
+| Effect                                       | Command                                         |
+| -------------------------------------------- | ------------------------------------------------|
+| create new environment which uses python 3.6 | `conda create -n myenv python=3.6`              |
+| install package                              | `conda install -n myenv tensorflow`             |
+| update package                               | `conda update -n myenv tensorflow`              |
+| update all packages                          | `conda update --all`                            |
+| activate env                                 | `conda activate myenv`                          |
+| deactivate current env                       | `conda deactivate`                              |
+| list envs                                    | `conda info --envs`                             |
+| list packages                                | `conda list -n myenv`                           |
+| remove package                               | `conda remove -n myenv tensorflow`              |
+| remove environment                           | `conda env remove -n myenv`                     |
+| save packages for future use                 | `conda list --export > package-list.txt`        |
+| reinstall packages from an export file       | `conda create -n myenv --file package-list.txt` |
+
 
 ## PostgreSQL
 
@@ -45,6 +46,7 @@ Development notes for for daily uses
 | reset ids on the table             | `ALTER SEQUENCE table_name_id_seq RESTART WITH 1;`                     |
 | delete table                       | `DROP TABLE schema_name.table_name;`                                   |
 
+
 ## ImageMagick
 
 | Effect                                                                | Command                                                  |
@@ -55,6 +57,7 @@ Development notes for for daily uses
 | split the image into three with offset. Output -> 3.jpg, 4.jpg, 5.jpg | `convert image1.jpg -crop 3x1@ -scene 3 %d.jpg`          |
 | create pdf from images                                                | `convert \*.jpg output.pdf`                              |
 | extract images from pdf                                               | `convert input.pdf %d.jpg`                               |
+
 
 ## Git
 
@@ -73,6 +76,7 @@ $ rbenv uninstall 2.5.0   # uninstall ruby-build
 $ rbenv rehash            # enable changes after gem installation
 $ rbenv install -l        # list all versions ruby-build
 ```
+
 
 ## Rbenv, pyenv, nvm, mongodb, anaconda zsh integration with .zshrc
 
@@ -109,6 +113,7 @@ fi
 unset __conda_setup
 ```
 
+
 ## Pipenv
 
 | Effect                                                                | Command                                                  |
@@ -122,6 +127,7 @@ unset __conda_setup
 | check security vulnerabilities                                        | `pipenv check`                                           |
 | list dependency graph                                                 | `pipenv graph`                                           |
 
+
 ## GnuPG
 
 ```bash
@@ -130,7 +136,16 @@ $ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg
 ```
 
 ## Solution of 'Install failed, "zlib not available" error' on macOS Mojave
+
 ```bash
 xcode-select --install
 sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
+```
+
+
+## Mac Startup Sound Commands
+
+```bash
+sudo nvram SystemAudioVolume=%80    # disable the Startup Sound
+sudo nvram -d SystemAudioVolume     # enable the Startup Sound
 ```
