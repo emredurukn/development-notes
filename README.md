@@ -18,6 +18,8 @@ Development notes for for daily uses
 | remove environment                           | `conda env remove -n myenv`                     |
 | save packages for future use                 | `conda list --export > package-list.txt`        |
 | reinstall packages from an export file       | `conda create -n myenv --file package-list.txt` |
+| save environment info in a yaml file         | `conda env export > environment.yml`            |
+| recreate environment with a yaml file        | `conda env create -f environment.yml`           |
 
 
 ## PostgreSQL
