@@ -80,12 +80,12 @@ $ rbenv install -l        # list all versions ruby-build
 ```
 
 
-## Rbenv, pyenv, nvm, mongodb, anaconda zsh integration with .zshrc
+## rbenv, pyenv, nvm, anaconda, miniconda zsh integration with .zshrc
 
 ```bash
 # nvm
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -95,10 +95,6 @@ eval "$(rbenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-# mongodb
-export MONGO_PATH=/usr/local/mongodb
-export PATH=$PATH:$MONGO_PATH/bin
 
 # anaconda
 __conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
@@ -110,6 +106,19 @@ else
         CONDA_CHANGEPS1=false conda activate base
     else
         \export PATH="/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+# miniconda
+__conda_setup="$('/home/emre/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/emre/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/emre/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/emre/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
