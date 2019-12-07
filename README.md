@@ -37,7 +37,7 @@ Development notes for for daily uses
 | makes the user super user          | `ALTER USER user_name WITH SUPERUSER;`                                 |
 | start psql with user               | `psql postgres -U user_name`                                           |
 | create database                    | `CREATE DATABASE database_name;`                                       |
-| connect database                   | `\c database-name;`                                                    |
+| connect database                   | `\c database_name;`                                                    |
 | list tables                        | `\dl`                                                                  |
 | delete database                    | `DROP DATABASE database_name;`                                         |
 | create schema                      | `CREATE SCHEMA schema_name;`                                           |
@@ -79,22 +79,26 @@ $ rbenv rehash            # enable changes after gem installation
 $ rbenv install -l        # list all versions ruby-build
 ```
 
+## Nvm
 
-## rbenv, pyenv, nvm, anaconda, miniconda zsh integration with .zshrc
+```bash
+$ nvm ls-remote                 # lists all of the available versions of NodeJs & iojs
+$ nvm ls                        # list locally installed version
+$ nvm install 12.13.1           # install the version 12.13.1
+$ nvm use 12.13.1               # switch to and use the installed 12.13.1 version
+$ nvm uninstall 12.13.1         # uninstall node version (cannot uninstall currently-active node version)
+```
+
+## rbenv, nvm and anaconda zsh integration with .zshrc
 
 ```bash
 # nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # anaconda
 __conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
@@ -109,34 +113,7 @@ else
     fi
 fi
 unset __conda_setup
-
-# miniconda
-__conda_setup="$('/home/emre/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/emre/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/emre/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/emre/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
 ```
-
-
-## Pipenv
-
-| Effect                                                                | Command                                                  |
-| --------------------------------------------------------------------- | -------------------------------------------------------- |
-| activate virtualenv                                                   | `pipenv shell`                                           |
-| install python module                                                 | `pipenv install camelcase`                               |
-| install python module with skip lock                                  | `pipenv install camelcase --skip-lock`                   |
-| install python module for development                                 | `pipenv install nose --dev`                              |
-| uninstall python module                                               | `pipenv uninstall camelcase`                             |
-| install from requirements.txt                                         | `pipenv install -r ./requirements.txt`                   |
-| check security vulnerabilities                                        | `pipenv check`                                           |
-| list dependency graph                                                 | `pipenv graph`                                           |
 
 
 ## GnuPG
@@ -144,13 +121,6 @@ unset __conda_setup
 ```bash
 $ gpg -c file_name.txt                        # encrypt file  (file_name.txt -> file_name.txt.gpg)
 $ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
-```
-
-## Solution of 'Install failed, "zlib not available" error' on macOS Mojave
-
-```bash
-xcode-select --install
-sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /
 ```
 
 
