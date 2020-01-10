@@ -86,6 +86,7 @@ $ nvm ls-remote                 # lists all of the available versions of NodeJs 
 $ nvm ls                        # list locally installed version
 $ nvm install 12.13.1           # install the version 12.13.1
 $ nvm use 12.13.1               # switch to and use the installed 12.13.1 version
+$ nvm alias default 12.13.1     # set 12.13.1 as default
 $ nvm uninstall 12.13.1         # uninstall node version (cannot uninstall currently-active node version)
 ```
 
