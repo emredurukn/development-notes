@@ -145,6 +145,12 @@ print(torch.cuda.is_available())
 ## Mac Startup Sound Commands
 
 ```bash
-sudo nvram SystemAudioVolume=%80    # disable the Startup Sound
-sudo nvram -d SystemAudioVolume     # enable the Startup Sound
+$ sudo nvram SystemAudioVolume=%80    # disable the Startup Sound
+$ sudo nvram -d SystemAudioVolume     # enable the Startup Sound
+```
+
+## Mac Command Line Developer Tools
+
+```bash
+$ xcode-select --install
 ```
