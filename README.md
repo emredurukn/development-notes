@@ -125,30 +125,6 @@ $ gpg -c file_name.txt                        # encrypt file  (file_name.txt -> 
 $ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg -> file_name.txt.gpg)
 ```
 
-## Tensorflow and PyTorch GPU Installation with Conda
-
-```bash
-$ conda install tensorflow-gpu
-$ conda install pytorch torchvision cudatoolkit=10.1 -c pytorch
-```
-
-### Check Installations
-
-```python
-import tensorflow as tf
-import torch
-
-print(tf.test.is_gpu_available())
-print(torch.cuda.is_available())
-```
-
-## Mac Startup Sound Commands
-
-```bash
-$ sudo nvram SystemAudioVolume=%80    # disable the Startup Sound
-$ sudo nvram -d SystemAudioVolume     # enable the Startup Sound
-```
-
 ## Mac Command Line Developer Tools
 
 ```bash
