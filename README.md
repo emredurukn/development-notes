@@ -130,3 +130,13 @@ $ gpg -o file_name.txt -d file_name.txt.gpg   # decrypt file  (file_name.txt.gpg
 ```bash
 $ xcode-select --install
 ```
+
+## Use Touch ID for sudo on Mac
+
+```bash
+# Open the sudo utility
+$ sudo vi /etc/pam.d/sudo
+
+# Add the following as the first line
+$ auth sufficient pam_tid.so
+```
