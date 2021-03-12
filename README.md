@@ -61,6 +61,17 @@ Development notes for for daily uses
 | create pdf from images                                                | `convert \*.jpg output.pdf`                              |
 | extract images from pdf                                               | `convert input.pdf %d.jpg`                               |
 
+## Install Python Packages for AWS Lambda Layers
+
+```bash
+$ mkdir lambda_layers
+$ cd lambda_layers
+$ mkdir python
+$ cd python
+$ pip install requests -t ./
+$ cd ..
+$ zip -r python_modules.zip .
+```
 
 ## Git
 
